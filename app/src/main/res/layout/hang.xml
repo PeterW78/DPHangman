@@ -10,4 +10,11 @@
         android:textAppearance="?attr/textAppearanceHeadline5"
         android:text="HANGMAN PICTURE IS HERE" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="136dp"
+        android:layout_height="193dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/hang_0" />
+
 </RelativeLayout>
