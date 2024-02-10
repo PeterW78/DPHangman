@@ -5,16 +5,19 @@
     android:layout_height="wrap_content">
 
     <TextView
+        android:id="@+id/textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?attr/textAppearanceHeadline5"
-        android:text="HANGMAN PICTURE IS HERE" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="35dp"
+        android:text=""
+        android:textAppearance="?attr/textAppearanceHeadline5" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="136dp"
         android:layout_height="193dp"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/hang_0" />
+        android:src="@drawable/hang_4" />
 
 </RelativeLayout>
