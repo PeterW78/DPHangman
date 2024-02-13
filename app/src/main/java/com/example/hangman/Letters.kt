@@ -56,20 +56,18 @@ class Letters : Fragment() {
         abutton.setOnClickListener {
             val solution = sharedViewModel.solution.value!!
             var guessedstring = sharedViewModel.guessedString.value!!
-            var remainingLetters : MutableList<Char> = sharedViewModel.remaining.value!!
             if (solution.contains("a")) {
                 //sharedViewModel.letter.value = "a"
-                Log.d("string", guessedstring)
                 guessedstring = updateString(solution, "a", guessedstring)
                 sharedViewModel.guessedString.value = guessedstring
                 remainingLetters.remove('a')
                 sharedViewModel.remaining.value = remainingLetters
-                isRight = true
+                sharedViewModel.guess.value = true
             } else {
-                isRight = false
+                sharedViewModel.guess.value = false
             }
             abutton.isEnabled = false
-            sharedViewModel.guess.value = isRight
+
             checkWin(solution)
         }
         bbutton.setOnClickListener {
@@ -81,12 +79,11 @@ class Letters : Fragment() {
                 sharedViewModel.guessedString.value = guessedstring
                 remainingLetters.remove('b')
                 sharedViewModel.remaining.value = remainingLetters
-                isRight = true
+                sharedViewModel.guess.value = true
             } else {
-                isRight = false
+                sharedViewModel.guess.value = false
             }
             bbutton.isEnabled = false
-            sharedViewModel.guess.value = isRight
             checkWin(solution)
         }
         cbutton.setOnClickListener {
@@ -98,12 +95,11 @@ class Letters : Fragment() {
                 sharedViewModel.guessedString.value = guessedstring
                 remainingLetters.remove('c')
                 sharedViewModel.remaining.value = remainingLetters
-                isRight = true
+                sharedViewModel.guess.value = true
             } else {
-                isRight = false
+                sharedViewModel.guess.value = false
             }
             cbutton.isEnabled = false
-            sharedViewModel.guess.value = isRight
             checkWin(solution)
         }
         dbutton.setOnClickListener {
@@ -115,12 +111,11 @@ class Letters : Fragment() {
                 sharedViewModel.guessedString.value = guessedstring
                 remainingLetters.remove('d')
                 sharedViewModel.remaining.value = remainingLetters
-                isRight = true
+                sharedViewModel.guess.value = true
             } else {
-                isRight = false
+                sharedViewModel.guess.value = false
             }
             dbutton.isEnabled = false
-            sharedViewModel.guess.value = isRight
             checkWin(solution)
         }
         ebutton.setOnClickListener {
@@ -132,12 +127,11 @@ class Letters : Fragment() {
                 sharedViewModel.guessedString.value = guessedstring
                 remainingLetters.remove('e')
                 sharedViewModel.remaining.value = remainingLetters
-                isRight = true
+                sharedViewModel.guess.value = true
             } else {
-                isRight = false
+                sharedViewModel.guess.value = false
             }
             ebutton.isEnabled = false
-            sharedViewModel.guess.value = isRight
             checkWin(solution)
         }
         fbutton.setOnClickListener {
@@ -149,12 +143,11 @@ class Letters : Fragment() {
                 sharedViewModel.guessedString.value = guessedstring
                 remainingLetters.remove('f')
                 sharedViewModel.remaining.value = remainingLetters
-                isRight = true
+                sharedViewModel.guess.value = true
             } else {
-                isRight = false
+                sharedViewModel.guess.value = false
             }
             fbutton.isEnabled = false
-            sharedViewModel.guess.value = isRight
             checkWin(solution)
         }
         gbutton.setOnClickListener {
@@ -166,12 +159,11 @@ class Letters : Fragment() {
                 sharedViewModel.guessedString.value = guessedstring
                 remainingLetters.remove('g')
                 sharedViewModel.remaining.value = remainingLetters
-                isRight = true
+                sharedViewModel.guess.value = true
             } else {
-                isRight = false
+                sharedViewModel.guess.value = false
             }
             gbutton.isEnabled = false
-            sharedViewModel.guess.value = isRight
             checkWin(solution)
         }
         hbutton.setOnClickListener {
@@ -183,12 +175,11 @@ class Letters : Fragment() {
                 sharedViewModel.guessedString.value = guessedstring
                 remainingLetters.remove('h')
                 sharedViewModel.remaining.value = remainingLetters
-                isRight = true
+                sharedViewModel.guess.value = true
             } else {
-                isRight = false
+                sharedViewModel.guess.value = false
             }
             hbutton.isEnabled = false
-            sharedViewModel.guess.value = isRight
             checkWin(solution)
         }
         ibutton.setOnClickListener {
@@ -200,12 +191,11 @@ class Letters : Fragment() {
                 sharedViewModel.guessedString.value = guessedstring
                 remainingLetters.remove('i')
                 sharedViewModel.remaining.value = remainingLetters
-                isRight = true
+                sharedViewModel.guess.value = true
             } else {
-                isRight = false
+                sharedViewModel.guess.value = false
             }
             ibutton.isEnabled = false
-            sharedViewModel.guess.value = isRight
             checkWin(solution)
         }
         jbutton.setOnClickListener {
@@ -217,12 +207,11 @@ class Letters : Fragment() {
                 sharedViewModel.guessedString.value = guessedstring
                 remainingLetters.remove('j')
                 sharedViewModel.remaining.value = remainingLetters
-                isRight = true
+                sharedViewModel.guess.value = true
             } else {
-                isRight = false
+                sharedViewModel.guess.value = false
             }
             jbutton.isEnabled = false
-            sharedViewModel.guess.value = isRight
             checkWin(solution)
         }
         kbutton.setOnClickListener {
@@ -234,12 +223,11 @@ class Letters : Fragment() {
                 sharedViewModel.guessedString.value = guessedstring
                 remainingLetters.remove('k')
                 sharedViewModel.remaining.value = remainingLetters
-                isRight = true
+                sharedViewModel.guess.value = true
             } else {
-                isRight = false
+                sharedViewModel.guess.value = false
             }
             kbutton.isEnabled = false
-            sharedViewModel.guess.value = isRight
             checkWin(solution)
         }
         lbutton.setOnClickListener {
@@ -251,12 +239,11 @@ class Letters : Fragment() {
                 sharedViewModel.guessedString.value = guessedstring
                 remainingLetters.remove('l')
                 sharedViewModel.remaining.value = remainingLetters
-                isRight = true
+                sharedViewModel.guess.value = true
             } else {
-                isRight = false
+                sharedViewModel.guess.value = false
             }
             lbutton.isEnabled = false
-            sharedViewModel.guess.value = isRight
             checkWin(solution)
         }
         mbutton.setOnClickListener {
@@ -268,12 +255,11 @@ class Letters : Fragment() {
                 sharedViewModel.guessedString.value = guessedstring
                 remainingLetters.remove('m')
                 sharedViewModel.remaining.value = remainingLetters
-                isRight = true
+                sharedViewModel.guess.value = true
             } else {
-                isRight = false
+                sharedViewModel.guess.value = false
             }
             mbutton.isEnabled = false
-            sharedViewModel.guess.value = isRight
             checkWin(solution)
         }
         nbutton.setOnClickListener {
@@ -285,12 +271,11 @@ class Letters : Fragment() {
                 sharedViewModel.guessedString.value = guessedstring
                 remainingLetters.remove('n')
                 sharedViewModel.remaining.value = remainingLetters
-                isRight = true
+                sharedViewModel.guess.value = true
             } else {
-                isRight = false
+                sharedViewModel.guess.value = false
             }
             nbutton.isEnabled = false
-            sharedViewModel.guess.value = isRight
             checkWin(solution)
         }
         obutton.setOnClickListener {
@@ -302,12 +287,11 @@ class Letters : Fragment() {
                 sharedViewModel.guessedString.value = guessedstring
                 remainingLetters.remove('o')
                 sharedViewModel.remaining.value = remainingLetters
-                isRight = true
+                sharedViewModel.guess.value = true
             } else {
-                isRight = false
+                sharedViewModel.guess.value = false
             }
             obutton.isEnabled = false
-            sharedViewModel.guess.value = isRight
             checkWin(solution)
         }
         pbutton.setOnClickListener {
@@ -319,12 +303,11 @@ class Letters : Fragment() {
                 sharedViewModel.guessedString.value = guessedstring
                 remainingLetters.remove('p')
                 sharedViewModel.remaining.value = remainingLetters
-                isRight = true
+                sharedViewModel.guess.value = true
             } else {
-                isRight = false
+                sharedViewModel.guess.value = false
             }
             pbutton.isEnabled = false
-            sharedViewModel.guess.value = isRight
             checkWin(solution)
         }
         qbutton.setOnClickListener {
@@ -336,12 +319,11 @@ class Letters : Fragment() {
                 sharedViewModel.guessedString.value = guessedstring
                 remainingLetters.remove('q')
                 sharedViewModel.remaining.value = remainingLetters
-                isRight = true
+                sharedViewModel.guess.value = true
             } else {
-                isRight = false
+                sharedViewModel.guess.value = false
             }
             qbutton.isEnabled = false
-            sharedViewModel.guess.value = isRight
             checkWin(solution)
         }
         rbutton.setOnClickListener {
@@ -353,12 +335,11 @@ class Letters : Fragment() {
                 sharedViewModel.guessedString.value = guessedstring
                 remainingLetters.remove('r')
                 sharedViewModel.remaining.value = remainingLetters
-                isRight = true
+                sharedViewModel.guess.value = true
             } else {
-                isRight = false
+                sharedViewModel.guess.value = false
             }
             rbutton.isEnabled = false
-            sharedViewModel.guess.value = isRight
             checkWin(solution)
         }
         sbutton.setOnClickListener {
@@ -370,12 +351,11 @@ class Letters : Fragment() {
                 sharedViewModel.guessedString.value = guessedstring
                 remainingLetters.remove('s')
                 sharedViewModel.remaining.value = remainingLetters
-                isRight = true
+                sharedViewModel.guess.value = true
             } else {
-                isRight = false
+                sharedViewModel.guess.value = false
             }
             sbutton.isEnabled = false
-            sharedViewModel.guess.value = isRight
             checkWin(solution)
         }
         tbutton.setOnClickListener {
@@ -387,12 +367,11 @@ class Letters : Fragment() {
                 sharedViewModel.guessedString.value = guessedstring
                 remainingLetters.remove('t')
                 sharedViewModel.remaining.value = remainingLetters
-                isRight = true
+                sharedViewModel.guess.value = true
             } else {
-                isRight = false
+                sharedViewModel.guess.value = false
             }
             tbutton.isEnabled = false
-            sharedViewModel.guess.value = isRight
             checkWin(solution)
         }
         ubutton.setOnClickListener {
@@ -404,12 +383,11 @@ class Letters : Fragment() {
                 sharedViewModel.guessedString.value = guessedstring
                 remainingLetters.remove('u')
                 sharedViewModel.remaining.value = remainingLetters
-                isRight = true
+                sharedViewModel.guess.value = true
             } else {
-                isRight = false
+                sharedViewModel.guess.value = false
             }
             ubutton.isEnabled = false
-            sharedViewModel.guess.value = isRight
             checkWin(solution)
         }
         vbutton.setOnClickListener {
@@ -421,12 +399,11 @@ class Letters : Fragment() {
                 sharedViewModel.guessedString.value = guessedstring
                 remainingLetters.remove('v')
                 sharedViewModel.remaining.value = remainingLetters
-                isRight = true
+                sharedViewModel.guess.value = true
             } else {
-                isRight = false
+                sharedViewModel.guess.value = false
             }
             vbutton.isEnabled = false
-            sharedViewModel.guess.value = isRight
             checkWin(solution)
         }
         wbutton.setOnClickListener {
@@ -438,12 +415,11 @@ class Letters : Fragment() {
                 sharedViewModel.guessedString.value = guessedstring
                 remainingLetters.remove('w')
                 sharedViewModel.remaining.value = remainingLetters
-                isRight = true
+                sharedViewModel.guess.value = true
             } else {
-                isRight = false
+                sharedViewModel.guess.value = false
             }
             wbutton.isEnabled = false
-            sharedViewModel.guess.value = isRight
             checkWin(solution)
         }
         xbutton.setOnClickListener {
@@ -455,12 +431,11 @@ class Letters : Fragment() {
                 sharedViewModel.guessedString.value = guessedstring
                 remainingLetters.remove('x')
                 sharedViewModel.remaining.value = remainingLetters
-                isRight = true
+                sharedViewModel.guess.value = true
             } else {
-                isRight = false
+                sharedViewModel.guess.value = false
             }
             xbutton.isEnabled = false
-            sharedViewModel.guess.value = isRight
             checkWin(solution)
         }
         ybutton.setOnClickListener {
@@ -472,12 +447,11 @@ class Letters : Fragment() {
                 sharedViewModel.guessedString.value = guessedstring
                 remainingLetters.remove('y')
                 sharedViewModel.remaining.value = remainingLetters
-                isRight = true
+                sharedViewModel.guess.value = true
             } else {
-                isRight = false
+                sharedViewModel.guess.value = false
             }
             ybutton.isEnabled = false
-            sharedViewModel.guess.value = isRight
             checkWin(solution)
         }
         zbutton.setOnClickListener {
@@ -489,12 +463,11 @@ class Letters : Fragment() {
                 sharedViewModel.guessedString.value = guessedstring
                 remainingLetters.remove('z')
                 sharedViewModel.remaining.value = remainingLetters
-                isRight = true
+                sharedViewModel.guess.value = true
             } else {
-                isRight = false
+                sharedViewModel.guess.value = false
             }
             zbutton.isEnabled = false
-            sharedViewModel.guess.value = isRight
             checkWin(solution)
         }
 

@@ -22,19 +22,19 @@ class Hang : Fragment() {
         val foodBank = listOf("apple", "banana", "orange")
         var solutionIndex: Int? = sharedViewModel.solutionIndex.value
 
+
+
         // revert everything to default when we click new game
         val newGame: Button = view.findViewById(R.id.newGame)
         newGame.setOnClickListener {
             sharedViewModel.falseIndex.value = 4
             view.findViewById<ImageView?>(R.id.imageView)?.setImageResource(R.drawable.hang_4)
             // change solution
-            Log.d("index", solutionIndex.toString())
             solutionIndex = if (solutionIndex == foodBank.size-1) {
                 0
             } else {
                 solutionIndex!! + 1
             }
-            Log.d("index", solutionIndex.toString())
             sharedViewModel.solution.value = foodBank[solutionIndex!!]
             sharedViewModel.solutionIndex.value = solutionIndex
             sharedViewModel.enableButtons.value = true

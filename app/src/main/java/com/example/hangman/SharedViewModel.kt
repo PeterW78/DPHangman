@@ -11,8 +11,6 @@ class SharedViewModel : ViewModel() {
     var letter = MutableLiveData<String>()
     // the entire string we have guessed that is right
     var guessedString = MutableLiveData<String>().apply { value = "" }
-    // true if we have won, false if we lose
-    var hasWon = MutableLiveData<Boolean>()
     // number of lives
     var falseIndex = MutableLiveData<Int>().apply {value = 4}
     // number of hints pressed
