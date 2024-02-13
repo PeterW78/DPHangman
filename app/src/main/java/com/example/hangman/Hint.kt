@@ -1,5 +1,6 @@
 package com.example.hangman
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,32 +25,36 @@ class Hint : Fragment(R.layout.hint)
         super.onViewCreated(view, savedInstanceState)
         val hintButton: Button = view.findViewById(R.id.showHint)
         val hintText: TextView = view.findViewById(R.id.hintMsg)
-        val solution = "banana"
-        var solutionstring = "banana"
-        var guessedstring = ""
-        var isRight: Boolean
-        sharedViewModel.numHint.value = 0
-        /* if our solution contains the character, we remove from solution string
-            once solution string is empty, the game is won */
+
+        // we can only see on landscape
+        val orientation = resources.configuration.orientation
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            hintButton.visibility = View.VISIBLE
+            hintText.visibility = View.VISIBLE
+        } else {
+            hintButton.visibility = View.GONE
+            hintText.visibility = View.GONE
+        }
+
         hintButton.setOnClickListener {
-            var falseIndex:Int = sharedViewModel.falseIndex.value!!
+            val falseIndex = sharedViewModel.falseIndex.value!!
             var numHint = sharedViewModel.numHint.value
             when (numHint) {
                 0 -> {
-                    hintText.setText("HINT: Food")
-                    hintButton.setText("Show Hint 2")
+                    hintText.text = getString(R.string.hint_food)
+                    hintButton.text = getString(R.string.show_hint_2)
                     numHint++
                     sharedViewModel.numHint.value = numHint
                 }
                 1 -> {
                     if (falseIndex >= 9) {
                         Toast.makeText(
-                            getActivity(),
-                            "HINT UNAVAILABLE, COST A TURN",
+                            activity,
+                            getString(R.string.hint_unavailable),
                             Toast.LENGTH_SHORT
                         ).show()
                     } else {
-                        hintButton.setText("Show Hint 3")
+                        hintButton.text = getString(R.string.show_hint_3)
                         numHint++
                         sharedViewModel.numHint.value = numHint
                         hint2()
@@ -59,8 +64,8 @@ class Hint : Fragment(R.layout.hint)
                 2 -> {
                     if (falseIndex >= 9) {
                         Toast.makeText(
-                            getActivity(),
-                            "HINT UNAVAILABLE, COST A TURN",
+                            activity,
+                            getString(R.string.hint_unavailable),
                             Toast.LENGTH_SHORT
                         ).show()
                     } else {
@@ -74,7 +79,7 @@ class Hint : Fragment(R.layout.hint)
     }
 
     private fun hint2() {
-        var remainingLetters = sharedViewModel.remaining.value!!.filter { !sharedViewModel.solution.value!!.contains(it)}.toMutableList()
+        val remainingLetters = sharedViewModel.remaining.value!!.filter { !sharedViewModel.solution.value!!.contains(it)}.toMutableList()
 
         val remainingLettersCount = remainingLetters.size
         val lettersToDisable = remainingLettersCount / 2
@@ -90,7 +95,7 @@ class Hint : Fragment(R.layout.hint)
 
     private fun hint3() {
         val vowels = listOf('a', 'e', 'i', 'o', 'u')
-        var remainingLetters = sharedViewModel.remaining.value!!
+        val remainingLetters = sharedViewModel.remaining.value!!
         val vowelsToReveal = vowels.filter { remainingLetters.contains(it)}
 
         for (vowel in vowelsToReveal) {

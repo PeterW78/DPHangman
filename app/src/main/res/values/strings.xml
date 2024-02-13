@@ -32,5 +32,12 @@
     <string name="X">x</string>
     <string name="Y">y</string>
     <string name="Z">z</string>
+    <string name="new_game">New Game</string>
+    <string name="hint_food">HINT: Food</string>
+    <string name="show_hint_2">Show Hint 2</string>
+    <string name="show_hint_3">Show Hint 3</string>
+    <string name="hint_unavailable">HINT UNAVAILABLE</string>
+    <string name="you_win">YOU WIN!!!</string>
+    <string name="you_lost">YOU LOST</string>
 
 </resources>

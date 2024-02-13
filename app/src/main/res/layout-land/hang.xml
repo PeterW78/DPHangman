@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
@@ -11,8 +10,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="115dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="497dp"
         android:letterSpacing="0.5"
         android:text=""
         android:textAppearance="?attr/textAppearanceHeadline5" />
@@ -30,8 +29,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="130dp"
-        android:layout_marginEnd="135dp"
+        android:layout_marginTop="123dp"
+        android:layout_marginEnd="440dp"
         android:text="@string/new_game" />
 
 </RelativeLayout>

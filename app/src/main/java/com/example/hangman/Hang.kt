@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -18,11 +19,36 @@ class Hang : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val textview: TextView = view.findViewById(R.id.textview)
-        var falseIndex = 5
-        sharedViewModel.falseIndex.value = falseIndex;
+        val foodBank = listOf("apple", "banana", "orange")
+        var solutionIndex: Int? = sharedViewModel.solutionIndex.value
+
+        // revert everything to default when we click new game
+        val newGame: Button = view.findViewById(R.id.newGame)
+        newGame.setOnClickListener {
+            sharedViewModel.falseIndex.value = 4
+            view.findViewById<ImageView?>(R.id.imageView)?.setImageResource(R.drawable.hang_4)
+            // change solution
+            Log.d("index", solutionIndex.toString())
+            solutionIndex = if (solutionIndex == foodBank.size-1) {
+                0
+            } else {
+                solutionIndex!! + 1
+            }
+            Log.d("index", solutionIndex.toString())
+            sharedViewModel.solution.value = foodBank[solutionIndex!!]
+            sharedViewModel.solutionIndex.value = solutionIndex
+            sharedViewModel.enableButtons.value = true
+            sharedViewModel.guessedString.value = ""
+            sharedViewModel.remaining.value = ('a'..'z').toMutableList()
+            sharedViewModel.numHint.value = 0
+            textview.text = ""
+        }
 
         sharedViewModel.guess.observe(viewLifecycleOwner) { data ->
+            // we change the hangman view based on the false answer
+            var falseIndex = sharedViewModel.falseIndex.value
             if (data == false) {
+                falseIndex = falseIndex!! + 1
                 when (falseIndex) {
                     5 -> {
                         view.findViewById<ImageView?>(R.id.imageView)
@@ -50,14 +76,14 @@ class Hang : Fragment() {
                     }
                 }
                 sharedViewModel.falseIndex.value = falseIndex;
-                falseIndex ++
             }
         }
+
         sharedViewModel.guessedString.observe(viewLifecycleOwner) { data ->
             textview.text = data
         }
 
-        val solution = "banana"
+        val solution = foodBank[solutionIndex!!]
         sharedViewModel.solution.value = solution
         var default = ""
         for (i in solution)
