@@ -12,4 +12,16 @@ class SharedViewModel : ViewModel() {
     var guessedString = MutableLiveData<String>()
     // true if we have won, false if we lose
     var hasWon = MutableLiveData<Boolean>()
+    // number of lives
+    var falseIndex = MutableLiveData<Int>()
+    // number of hints pressed
+    var numHint = MutableLiveData<Int>()
+    // solution string
+    var solution = MutableLiveData<String>()
+    // list of remaining characters
+    var remaining = MutableLiveData<MutableList<Char>>()
+    // disable letter
+    var disableLetter = MutableLiveData<String>()
+    // vowel to reveal
+    var vowel = MutableLiveData<Char>()
 }

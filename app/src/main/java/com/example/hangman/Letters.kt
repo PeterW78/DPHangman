@@ -1,10 +1,13 @@
 package com.example.hangman
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 
@@ -42,11 +45,13 @@ class Letters : Fragment() {
         val xbutton: Button = view.findViewById(R.id.x)
         val ybutton: Button = view.findViewById(R.id.y)
         val zbutton: Button = view.findViewById(R.id.z)
-        val solution = "banana"
-        var solutionstring = "banana"
+        val solution = sharedViewModel.solution.value!!
+        var solutionstring = sharedViewModel.solution.value!!
         var guessedstring = ""
         var isRight: Boolean
-
+        var letters : MutableList<Char> = ('a'..'z').toMutableList()
+        sharedViewModel.remaining.value = letters
+        sharedViewModel.guessedString.value = ""
         /* if our solution contains the character, we remove from solution string
             once solution string is empty, the game is won */
         abutton.setOnClickListener {
@@ -55,12 +60,16 @@ class Letters : Fragment() {
                 sharedViewModel.letter.value = "a"
                 guessedstring = updateString(solution, "a", guessedstring)
                 sharedViewModel.guessedString.value =guessedstring
+                var remainingLetters : MutableList<Char> = sharedViewModel.remaining.value!!
+                remainingLetters.remove('a')
+                sharedViewModel.remaining.value = remainingLetters
                 isRight = true
             } else {
                 isRight = false
             }
             abutton.isEnabled = false
             sharedViewModel.guess.value = isRight
+            checkWin(solution)
         }
         bbutton.setOnClickListener {
             if (solutionstring.contains("b")) {
@@ -68,12 +77,16 @@ class Letters : Fragment() {
                 sharedViewModel.letter.value = "b"
                 guessedstring = updateString(solution, "b", guessedstring)
                 sharedViewModel.guessedString.value = guessedstring
+                var remainingLetters : MutableList<Char> = sharedViewModel.remaining.value!!
+                remainingLetters.remove('b')
+                sharedViewModel.remaining.value = remainingLetters
                 isRight = true
             } else {
                 isRight = false
             }
             bbutton.isEnabled = false
             sharedViewModel.guess.value = isRight
+            checkWin(solution)
         }
         cbutton.setOnClickListener {
             if (solutionstring.contains("c")) {
@@ -81,12 +94,16 @@ class Letters : Fragment() {
                 sharedViewModel.letter.value = "c"
                 guessedstring = updateString(solution, "c", guessedstring)
                 sharedViewModel.guessedString.value = guessedstring
+                var remainingLetters : MutableList<Char> = sharedViewModel.remaining.value!!
+                remainingLetters.remove('c')
+                sharedViewModel.remaining.value = remainingLetters
                 isRight = true
             } else {
                 isRight = false
             }
             cbutton.isEnabled = false
             sharedViewModel.guess.value = isRight
+            checkWin(solution)
         }
         dbutton.setOnClickListener {
             if (solutionstring.contains("d")) {
@@ -94,12 +111,16 @@ class Letters : Fragment() {
                 sharedViewModel.letter.value = "d"
                 guessedstring = updateString(solution, "d", guessedstring)
                 sharedViewModel.guessedString.value = guessedstring
+                var remainingLetters : MutableList<Char> = sharedViewModel.remaining.value!!
+                remainingLetters.remove('d')
+                sharedViewModel.remaining.value = remainingLetters
                 isRight = true
             } else {
                 isRight = false
             }
             dbutton.isEnabled = false
             sharedViewModel.guess.value = isRight
+            checkWin(solution)
         }
         ebutton.setOnClickListener {
             if (solutionstring.contains("e")) {
@@ -107,12 +128,16 @@ class Letters : Fragment() {
                 sharedViewModel.letter.value = "e"
                 guessedstring = updateString(solution, "e", guessedstring)
                 sharedViewModel.guessedString.value = guessedstring
+                var remainingLetters : MutableList<Char> = sharedViewModel.remaining.value!!
+                remainingLetters.remove('e')
+                sharedViewModel.remaining.value = remainingLetters
                 isRight = true
             } else {
                 isRight = false
             }
             ebutton.isEnabled = false
             sharedViewModel.guess.value = isRight
+            checkWin(solution)
         }
         fbutton.setOnClickListener {
             if (solutionstring.contains("f")) {
@@ -120,12 +145,16 @@ class Letters : Fragment() {
                 sharedViewModel.letter.value = "f"
                 guessedstring = updateString(solution, "f", guessedstring)
                 sharedViewModel.guessedString.value = guessedstring
+                var remainingLetters : MutableList<Char> = sharedViewModel.remaining.value!!
+                remainingLetters.remove('f')
+                sharedViewModel.remaining.value = remainingLetters
                 isRight = true
             } else {
                 isRight = false
             }
             fbutton.isEnabled = false
             sharedViewModel.guess.value = isRight
+            checkWin(solution)
         }
         gbutton.setOnClickListener {
             if (solutionstring.contains("g")) {
@@ -133,12 +162,16 @@ class Letters : Fragment() {
                 sharedViewModel.letter.value = "g"
                 guessedstring = updateString(solution, "g", guessedstring)
                 sharedViewModel.guessedString.value = guessedstring
+                var remainingLetters : MutableList<Char> = sharedViewModel.remaining.value!!
+                remainingLetters.remove('g')
+                sharedViewModel.remaining.value = remainingLetters
                 isRight = true
             } else {
                 isRight = false
             }
             gbutton.isEnabled = false
             sharedViewModel.guess.value = isRight
+            checkWin(solution)
         }
         hbutton.setOnClickListener {
             if (solutionstring.contains("h")) {
@@ -146,12 +179,16 @@ class Letters : Fragment() {
                 sharedViewModel.letter.value = "h"
                 guessedstring = updateString(solution, "h", guessedstring)
                 sharedViewModel.guessedString.value = guessedstring
+                var remainingLetters : MutableList<Char> = sharedViewModel.remaining.value!!
+                remainingLetters.remove('h')
+                sharedViewModel.remaining.value = remainingLetters
                 isRight = true
             } else {
                 isRight = false
             }
             hbutton.isEnabled = false
             sharedViewModel.guess.value = isRight
+            checkWin(solution)
         }
         ibutton.setOnClickListener {
             if (solutionstring.contains("i")) {
@@ -159,12 +196,16 @@ class Letters : Fragment() {
                 sharedViewModel.letter.value = "i"
                 guessedstring = updateString(solution, "i", guessedstring)
                 sharedViewModel.guessedString.value = guessedstring
+                var remainingLetters : MutableList<Char> = sharedViewModel.remaining.value!!
+                remainingLetters.remove('i')
+                sharedViewModel.remaining.value = remainingLetters
                 isRight = true
             } else {
                 isRight = false
             }
             ibutton.isEnabled = false
             sharedViewModel.guess.value = isRight
+            checkWin(solution)
         }
         jbutton.setOnClickListener {
             if (solutionstring.contains("j")) {
@@ -172,12 +213,16 @@ class Letters : Fragment() {
                 sharedViewModel.letter.value = "j"
                 guessedstring = updateString(solution, "j", guessedstring)
                 sharedViewModel.guessedString.value = guessedstring
+                var remainingLetters : MutableList<Char> = sharedViewModel.remaining.value!!
+                remainingLetters.remove('j')
+                sharedViewModel.remaining.value = remainingLetters
                 isRight = true
             } else {
                 isRight = false
             }
             jbutton.isEnabled = false
             sharedViewModel.guess.value = isRight
+            checkWin(solution)
         }
         kbutton.setOnClickListener {
             if (solutionstring.contains("k")) {
@@ -185,12 +230,16 @@ class Letters : Fragment() {
                 sharedViewModel.letter.value = "k"
                 guessedstring = updateString(solution, "k", guessedstring)
                 sharedViewModel.guessedString.value = guessedstring
+                var remainingLetters : MutableList<Char> = sharedViewModel.remaining.value!!
+                remainingLetters.remove('k')
+                sharedViewModel.remaining.value = remainingLetters
                 isRight = true
             } else {
                 isRight = false
             }
             kbutton.isEnabled = false
             sharedViewModel.guess.value = isRight
+            checkWin(solution)
         }
         lbutton.setOnClickListener {
             if (solutionstring.contains("l")) {
@@ -198,12 +247,16 @@ class Letters : Fragment() {
                 sharedViewModel.letter.value = "l"
                 guessedstring = updateString(solution, "l", guessedstring)
                 sharedViewModel.guessedString.value = guessedstring
+                var remainingLetters : MutableList<Char> = sharedViewModel.remaining.value!!
+                remainingLetters.remove('l')
+                sharedViewModel.remaining.value = remainingLetters
                 isRight = true
             } else {
                 isRight = false
             }
             lbutton.isEnabled = false
             sharedViewModel.guess.value = isRight
+            checkWin(solution)
         }
         mbutton.setOnClickListener {
             if (solutionstring.contains("m")) {
@@ -211,12 +264,16 @@ class Letters : Fragment() {
                 sharedViewModel.letter.value = "m"
                 guessedstring = updateString(solution, "m", guessedstring)
                 sharedViewModel.guessedString.value = guessedstring
+                var remainingLetters : MutableList<Char> = sharedViewModel.remaining.value!!
+                remainingLetters.remove('m')
+                sharedViewModel.remaining.value = remainingLetters
                 isRight = true
             } else {
                 isRight = false
             }
             mbutton.isEnabled = false
             sharedViewModel.guess.value = isRight
+            checkWin(solution)
         }
         nbutton.setOnClickListener {
             if (solutionstring.contains("n")) {
@@ -224,12 +281,16 @@ class Letters : Fragment() {
                 sharedViewModel.letter.value = "n"
                 guessedstring = updateString(solution, "n", guessedstring)
                 sharedViewModel.guessedString.value = guessedstring
+                var remainingLetters : MutableList<Char> = sharedViewModel.remaining.value!!
+                remainingLetters.remove('n')
+                sharedViewModel.remaining.value = remainingLetters
                 isRight = true
             } else {
                 isRight = false
             }
             nbutton.isEnabled = false
             sharedViewModel.guess.value = isRight
+            checkWin(solution)
         }
         obutton.setOnClickListener {
             if (solutionstring.contains("o")) {
@@ -237,12 +298,16 @@ class Letters : Fragment() {
                 sharedViewModel.letter.value = "o"
                 guessedstring = updateString(solution, "o", guessedstring)
                 sharedViewModel.guessedString.value = guessedstring
+                var remainingLetters : MutableList<Char> = sharedViewModel.remaining.value!!
+                remainingLetters.remove('o')
+                sharedViewModel.remaining.value = remainingLetters
                 isRight = true
             } else {
                 isRight = false
             }
             obutton.isEnabled = false
             sharedViewModel.guess.value = isRight
+            checkWin(solution)
         }
         pbutton.setOnClickListener {
             if (solutionstring.contains("p")) {
@@ -250,12 +315,16 @@ class Letters : Fragment() {
                 sharedViewModel.letter.value = "p"
                 guessedstring = updateString(solution, "p", guessedstring)
                 sharedViewModel.guessedString.value = guessedstring
+                var remainingLetters : MutableList<Char> = sharedViewModel.remaining.value!!
+                remainingLetters.remove('p')
+                sharedViewModel.remaining.value = remainingLetters
                 isRight = true
             } else {
                 isRight = false
             }
             pbutton.isEnabled = false
             sharedViewModel.guess.value = isRight
+            checkWin(solution)
         }
         qbutton.setOnClickListener {
             if (solutionstring.contains("q")) {
@@ -263,12 +332,16 @@ class Letters : Fragment() {
                 sharedViewModel.letter.value = "q"
                 guessedstring = updateString(solution, "q", guessedstring)
                 sharedViewModel.guessedString.value = guessedstring
+                var remainingLetters : MutableList<Char> = sharedViewModel.remaining.value!!
+                remainingLetters.remove('q')
+                sharedViewModel.remaining.value = remainingLetters
                 isRight = true
             } else {
                 isRight = false
             }
             qbutton.isEnabled = false
             sharedViewModel.guess.value = isRight
+            checkWin(solution)
         }
         rbutton.setOnClickListener {
             if (solutionstring.contains("r")) {
@@ -276,12 +349,16 @@ class Letters : Fragment() {
                 sharedViewModel.letter.value = "r"
                 guessedstring = updateString(solution, "r", guessedstring)
                 sharedViewModel.guessedString.value = guessedstring
+                var remainingLetters : MutableList<Char> = sharedViewModel.remaining.value!!
+                remainingLetters.remove('r')
+                sharedViewModel.remaining.value = remainingLetters
                 isRight = true
             } else {
                 isRight = false
             }
             rbutton.isEnabled = false
             sharedViewModel.guess.value = isRight
+            checkWin(solution)
         }
         sbutton.setOnClickListener {
             if (solutionstring.contains("s")) {
@@ -289,12 +366,16 @@ class Letters : Fragment() {
                 sharedViewModel.letter.value = "s"
                 guessedstring = updateString(solution, "s", guessedstring)
                 sharedViewModel.guessedString.value = guessedstring
+                var remainingLetters : MutableList<Char> = sharedViewModel.remaining.value!!
+                remainingLetters.remove('s')
+                sharedViewModel.remaining.value = remainingLetters
                 isRight = true
             } else {
                 isRight = false
             }
             sbutton.isEnabled = false
             sharedViewModel.guess.value = isRight
+            checkWin(solution)
         }
         tbutton.setOnClickListener {
             if (solutionstring.contains("t")) {
@@ -302,12 +383,16 @@ class Letters : Fragment() {
                 sharedViewModel.letter.value = "t"
                 guessedstring = updateString(solution, "t", guessedstring)
                 sharedViewModel.guessedString.value = guessedstring
+                var remainingLetters : MutableList<Char> = sharedViewModel.remaining.value!!
+                remainingLetters.remove('t')
+                sharedViewModel.remaining.value = remainingLetters
                 isRight = true
             } else {
                 isRight = false
             }
             tbutton.isEnabled = false
             sharedViewModel.guess.value = isRight
+            checkWin(solution)
         }
         ubutton.setOnClickListener {
             if (solutionstring.contains("u")) {
@@ -315,12 +400,16 @@ class Letters : Fragment() {
                 sharedViewModel.letter.value = "u"
                 guessedstring = updateString(solution, "u", guessedstring)
                 sharedViewModel.guessedString.value = guessedstring
+                var remainingLetters : MutableList<Char> = sharedViewModel.remaining.value!!
+                remainingLetters.remove('u')
+                sharedViewModel.remaining.value = remainingLetters
                 isRight = true
             } else {
                 isRight = false
             }
             ubutton.isEnabled = false
             sharedViewModel.guess.value = isRight
+            checkWin(solution)
         }
         vbutton.setOnClickListener {
             if (solutionstring.contains("v")) {
@@ -328,12 +417,16 @@ class Letters : Fragment() {
                 sharedViewModel.letter.value = "v"
                 guessedstring = updateString(solution, "v", guessedstring)
                 sharedViewModel.guessedString.value = guessedstring
+                var remainingLetters : MutableList<Char> = sharedViewModel.remaining.value!!
+                remainingLetters.remove('v')
+                sharedViewModel.remaining.value = remainingLetters
                 isRight = true
             } else {
                 isRight = false
             }
             vbutton.isEnabled = false
             sharedViewModel.guess.value = isRight
+            checkWin(solution)
         }
         wbutton.setOnClickListener {
             if (solutionstring.contains("w")) {
@@ -341,12 +434,16 @@ class Letters : Fragment() {
                 sharedViewModel.letter.value = "w"
                 guessedstring = updateString(solution, "w", guessedstring)
                 sharedViewModel.guessedString.value = guessedstring
+                var remainingLetters : MutableList<Char> = sharedViewModel.remaining.value!!
+                remainingLetters.remove('w')
+                sharedViewModel.remaining.value = remainingLetters
                 isRight = true
             } else {
                 isRight = false
             }
             wbutton.isEnabled = false
             sharedViewModel.guess.value = isRight
+            checkWin(solution)
         }
         xbutton.setOnClickListener {
             if (solutionstring.contains("x")) {
@@ -354,12 +451,16 @@ class Letters : Fragment() {
                 sharedViewModel.letter.value = "x"
                 guessedstring = updateString(solution, "x", guessedstring)
                 sharedViewModel.guessedString.value = guessedstring
+                var remainingLetters : MutableList<Char> = sharedViewModel.remaining.value!!
+                remainingLetters.remove('x')
+                sharedViewModel.remaining.value = remainingLetters
                 isRight = true
             } else {
                 isRight = false
             }
             xbutton.isEnabled = false
             sharedViewModel.guess.value = isRight
+            checkWin(solution)
         }
         ybutton.setOnClickListener {
             if (solutionstring.contains("y")) {
@@ -367,12 +468,16 @@ class Letters : Fragment() {
                 sharedViewModel.letter.value = "y"
                 guessedstring = updateString(solution, "y", guessedstring)
                 sharedViewModel.guessedString.value = guessedstring
+                var remainingLetters : MutableList<Char> = sharedViewModel.remaining.value!!
+                remainingLetters.remove('y')
+                sharedViewModel.remaining.value = remainingLetters
                 isRight = true
             } else {
                 isRight = false
             }
             ybutton.isEnabled = false
             sharedViewModel.guess.value = isRight
+            checkWin(solution)
         }
         zbutton.setOnClickListener {
             if (solutionstring.contains("z")) {
@@ -380,28 +485,64 @@ class Letters : Fragment() {
                 sharedViewModel.letter.value = "z"
                 guessedstring = updateString(solution, "z", guessedstring)
                 sharedViewModel.guessedString.value = guessedstring
+                var remainingLetters : MutableList<Char> = sharedViewModel.remaining.value!!
+                remainingLetters.remove('z')
+                sharedViewModel.remaining.value = remainingLetters
                 isRight = true
             } else {
                 isRight = false
             }
             zbutton.isEnabled = false
             sharedViewModel.guess.value = isRight
+            checkWin(solution)
         }
-        if (solutionstring == "") {
-            var hasWon = true
+
+        sharedViewModel.disableLetter.observe(viewLifecycleOwner) { data ->
+            val buttonId = resources.getIdentifier(data, "id", requireContext().packageName)
+            val button: Button = view.findViewById(buttonId)
+            button.isEnabled = false
         }
+
+        sharedViewModel.vowel.observe(viewLifecycleOwner) { data ->
+            val vowel = data.toString()
+            guessedstring = updateString(solution, vowel, guessedstring)
+            sharedViewModel.guessedString.value = guessedstring
+        }
+
     }
 
+    private fun checkWin(solution : String)
+    {
+        val guessedSoFar = sharedViewModel.guessedString.value!!
+        val guessed : String = updateString(solution, "", guessedSoFar)
+        if (guessed == solution) {
+            Toast.makeText(
+                getActivity(),
+                "YOU WIN!!!",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+        val falseIndex:Int = sharedViewModel.falseIndex.value!!
+        Log.w("TEST", "TESTSET: $falseIndex")
+        if (falseIndex >= 10 )
+        {
+            Toast.makeText(
+                getActivity(),
+                "YOU LOST",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }
     private fun updateString(solution: String, character: String, guessedSoFar: String): String {
         val fullstring = guessedSoFar + character
         val fullstringList = fullstring.toList()
-        val guessList = mutableListOf(' ', ' ', ' ', ' ', ' ', ' ')
+        val guessList = mutableListOf('_', '_', '_', '_', '_', '_')
         val solutionList = solution.toList()
         for (i in solutionList.indices) {
             for (j in fullstringList.indices) {
                 if (solution[i] == fullstringList[j]) {
-                    if (guessList[i] == ' ') {
-                        guessList.add(i, fullstringList[j])
+                    if (guessList[i] == '_') {
+                        guessList[i] =  fullstringList[j]
                     }
                 }
             }

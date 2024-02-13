@@ -1,8 +1,11 @@
 <resources>
-    <string name="app_name">hangman</string>
+    <string name="app_name">Daisy and Peter Hangman</string>
     <string name="Choose"> Choose a Letter </string>
-    <string name="Hint"> Hint: Food </string>
+    <string name="hint"> Show Hint 1 </string>
+    <string name="hint2"> Show Hint 2 </string>
+    <string name="hint3"> Show Hint 3 </string>
     <string name="Answer">banana</string>
+    <string name="HintMsg"> HINT: Food</string>
     <string name="A">a</string>
     <string name="B">b</string>
     <string name="C">c</string>

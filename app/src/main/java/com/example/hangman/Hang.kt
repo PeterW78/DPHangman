@@ -1,6 +1,7 @@
 package com.example.hangman
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,11 +18,12 @@ class Hang : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val textview: TextView = view.findViewById(R.id.textview)
-        var falseindex = 5
+        var falseIndex = 5
+        sharedViewModel.falseIndex.value = falseIndex;
 
         sharedViewModel.guess.observe(viewLifecycleOwner) { data ->
             if (data == false) {
-                when (falseindex) {
+                when (falseIndex) {
                     5 -> {
                         view.findViewById<ImageView?>(R.id.imageView)
                             ?.setImageResource(R.drawable.hang_5)
@@ -47,11 +49,21 @@ class Hang : Fragment() {
                             ?.setImageResource(R.drawable.hang_10)
                     }
                 }
-                falseindex ++
+                sharedViewModel.falseIndex.value = falseIndex;
+                falseIndex ++
             }
         }
         sharedViewModel.guessedString.observe(viewLifecycleOwner) { data ->
             textview.text = data
         }
+
+        val solution = "banana"
+        sharedViewModel.solution.value = solution
+        var default = ""
+        for (i in solution)
+        {
+            default += "_"
+        }
+        textview.text = default
     }
 }
